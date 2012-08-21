@@ -1,0 +1,11 @@
+prefix=@PREFIX@
+exec_prefix=@EXEC_PREFIX@
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+Name: status
+Description: status supporting library
+Version: @VERSION@
+Requires:
+Libs: -L${libdir} -lstatus
+Cflags: -I${includedir}
