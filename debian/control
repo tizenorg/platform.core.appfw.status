@@ -1,0 +1,25 @@
+Source: status
+Section: libs
+Priority: optional
+Maintainer: Jeonghoon Park <jh1979.park@samsung.com>, Young-joo Park <yjoo93.park@samsung.com>
+Build-Depends: debhelper (>= 5), dlog-dev, libslp-setting-dev, libaul-1-dev
+Standards-Version: 3.7.2
+
+Package: libstatus
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Status supporting library (shared object)
+
+Package: libstatus-dev
+Section: libs
+Architecture: any
+Depends: libstatus (= ${Source-Version})
+Description: Status supporting library (development)
+
+Package: libstatus-dbg
+Section: debug
+Architecture: any
+Depends: ${misc:Depends}, libstatus (= ${Source-Version})
+Description: Status supporting library (unstripped)
+
