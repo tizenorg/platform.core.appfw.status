@@ -1,0 +1,11 @@
+prefix=@PREFIX@
+exec_prefix=@EXEC_PREFIX@
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+Name: status-monitor
+Description: status monitor supporting library
+Version: @VERSION@
+Requires:
+Libs: -L${libdir} -lstatus-monitor
+Cflags: -I${includedir}
