@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ ${USER} = "root" ]
+then
+    vconftool set -t int memory/private/libstatus/music/state 0 -i -u 5000
+    vconftool set -t int memory/private/libstatus/radio/state 0 -i -u 5000
+    vconftool set -t int memory/private/libstatus/vr/state 0 -i -u 5000
+    vconftool set -t int memory/private/libstatus/music/pid -1 -i -u 5000
+    vconftool set -t int memory/private/libstatus/radio/pid -1 -i -u 5000
+    vconftool set -t int memory/private/libstatus/vr/pid -1 -i -u 5000
+    vconftool set -t string memory/private/libstatus/message "" -i -u 5000
+fi
+
