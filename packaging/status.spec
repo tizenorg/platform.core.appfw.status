@@ -1,7 +1,7 @@
 Name:       status
 Summary:    status library
 Version:    0.0.1
-Release:    2
+Release:    1
 Group:      TBD
 License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
@@ -11,7 +11,8 @@ BuildRequires: pkgconfig(vconf)
 BuildRequires: pkgconfig(aul)
 BuildRequires: cmake
 Requires(post): /sbin/ldconfig
-requires(postun): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
+
 %description
 Status library.
 
@@ -27,8 +28,8 @@ Requires:   %{name} = %{version}-%{release}
 Status library (devel).
 
 %build
-export LDFLAGS+="-Wl,--rpath=%{_prefix}/lib -Wl,--as-needed"
-LDFLAGS="$LDFLAGS" cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
+export LDFLAGS+="-Wl,--rpath=%{_libdir} -Wl,--as-needed"
+%cmake .
 make %{?jobs:-j%jobs}
 
 %install
