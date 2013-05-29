@@ -1,0 +1,8 @@
+Change-Id: I5e9fe81bdb75a1e816a9b895345c44f44f0b85ae
+Code-Review+2: Anas Nashif
+Verified+1: Baptiste DURAND <baptiste.durand@eurogiciel.fr>
+Submitted-by: Anas Nashif
+Submitted-at: Wed, 29 May 2013 06:02:39 -0700
+Reviewed-on: https://review.tizen.org/gerrit/3743
+Project: platform/core/appfw/status
+Branch: refs/heads/tizen
