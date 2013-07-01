@@ -5,6 +5,7 @@ Release:    1
 Group:      TBD
 License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
+Source1001: 	status.manifest
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(vconf)
@@ -18,6 +19,7 @@ Status library.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %package devel
 Summary:    Status library (devel)
@@ -57,12 +59,13 @@ init_vconf
 %postun -p /sbin/ldconfig
 
 %files
-%manifest status.manifest
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_libdir}/*.so*
 /usr/share/license/%{name}
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_includedir}/%{name}/*.h
 %{_libdir}/pkgconfig/*.pc
