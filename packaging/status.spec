@@ -11,6 +11,7 @@ BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(vconf)
 BuildRequires: pkgconfig(aul)
 BuildRequires: cmake
+BuildRequires:  pkgconfig(libtzplatform-config)
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
@@ -42,15 +43,16 @@ cp -f LICENSE %{buildroot}/usr/share/license/%{name}
 
 
 %post
+users_gid=$(getent group %{TZ_SYS_USER_GROUP} | cut -f3 -d':')
 init_vconf()
 {
-    vconftool set -t int memory/private/libstatus/music/state 0 -i -g 5000
-    vconftool set -t int memory/private/libstatus/radio/state 0 -i -g 5000
-    vconftool set -t int memory/private/libstatus/vr/state 0 -i -g 5000
-    vconftool set -t int memory/private/libstatus/music/pid -1 -i -g 5000
-    vconftool set -t int memory/private/libstatus/radio/pid -1 -i -g 5000
-    vconftool set -t int memory/private/libstatus/vr/pid -1 -i -g 5000
-    vconftool set -t string memory/private/libstatus/message "" -i -g 5000
+    vconftool set -t int memory/private/libstatus/music/state 0 -i -g $users_gid
+    vconftool set -t int memory/private/libstatus/radio/state 0 -i -g $users_gid
+    vconftool set -t int memory/private/libstatus/vr/state 0 -i -g $users_gid
+    vconftool set -t int memory/private/libstatus/music/pid -1 -i -g $users_gid
+    vconftool set -t int memory/private/libstatus/radio/pid -1 -i -g $users_gid
+    vconftool set -t int memory/private/libstatus/vr/pid -1 -i -g $users_gid
+    vconftool set -t string memory/private/libstatus/message "" -i -g $users_gid
 }
 
 /sbin/ldconfig
