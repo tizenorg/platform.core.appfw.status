@@ -1,11 +1,11 @@
 Name:       status
-Summary:    status library
+Summary:    Status library
 Version:    0.0.1
-Release:    1
-Group:      TBD
+Release:    0
+Group:      Applications/Core Applications
 License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
-Source1001: 	status.manifest
+Source1001:    status.manifest
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(vconf)
@@ -16,30 +16,29 @@ Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
 %description
-Status library.
+Status library files.
 
 %prep
 %setup -q
 cp %{SOURCE1001} .
 
 %package devel
-Summary:    Status library (devel)
+Summary:    Status library (dev)
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
-Status library (devel).
+Status library (devel) files.
 
 %build
-export LDFLAGS+="-Wl,--rpath=%{_libdir} -Wl,--as-needed"
+export LDFLAGS="${LDFLAGS} -Wl,--rpath=%{_libdir} -Wl,--as-needed"
 %cmake .
-make %{?jobs:-j%jobs}
+%__make %{?_smp_mflags}
 
 %install
 %make_install
-
-mkdir -p %{buildroot}/usr/share/license
-cp -f LICENSE %{buildroot}/usr/share/license/%{name}
+mkdir -p %{buildroot}%{_datadir}/license
+cp -f LICENSE %{buildroot}%{_datadir}/license/%{name}
 
 
 %post
@@ -64,11 +63,10 @@ init_vconf
 %manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_libdir}/*.so*
-/usr/share/license/%{name}
+%{_datadir}/license/%{name}
 
 %files devel
 %manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_includedir}/%{name}/*.h
 %{_libdir}/pkgconfig/*.pc
-
